@@ -12,20 +12,14 @@
 <main>
   <div class="jumbotron">
     <h1>Michaelsoft is a professional orginization</h1>
-    <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+    <p>Welcome to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
 
-    <h2>Variable</h2>
+    <h2>Members</h2>
     <p><%= tagline %></p>
+    <a href="views/pages/static/trey.html">Trey Floto</a> <br>
+    <a href="views/static/parker.html">Parker Fink</a> <br>
+    <a href="views/static/leniece.html">Leniece Bennett</a> <br>
 
-    <ul>
-      <% mascots.forEach(function(mascot) { %>
-        <li>
-          <strong><%= mascot.name %></strong>
-          representing <%= mascot.organization %>,
-          born <%= mascot.birth_year %>
-        </li>
-      <% }); %>
-    </ul>
   </div>
 </main>
 
