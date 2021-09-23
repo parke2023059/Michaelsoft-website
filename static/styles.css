@@ -1,0 +1,10 @@
+body {
+  background-image: url("background.png");
+  background-color: teal;
+}
+h1 {
+  color: black;
+}
+p {
+  color: black;
+}
