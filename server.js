@@ -1,5 +1,14 @@
 var express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+
 var app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+app.use(express.static('./static'));
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -11,7 +20,8 @@ app.get('/', function(req, res) {
   let members = [
     { name: 'Trey Floto', },
     { name: 'Parker Fink'},
-    { name: 'Leniece Bennett'}
+    { name: 'Leniece Bennett'},
+    { name: 'Logan Hiller'}
   ];
   var tagline = "No programming concept is complete without our members.";
 
