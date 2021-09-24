@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
-  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="container">
 
@@ -14,18 +14,28 @@
   <div class="jumbotron">
     <h1>Michaelsoft is a professional orginization</h1>
     <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+</body>
+<div class="jumbotron">
+<h1>Michaelsoft is a professional orginization</h1>
+<p>Welcome to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+
+<h2>Members</h2>
+<p><%= tagline %></p>
+<a href="trey.html">Trey Floto</a><br>
+<a href="parker.html">Parker Fink</a><br>
+<a href="leniece.html">Leniece Bennett</a><br>
+<a href="logan.html">Logan Hiller</a><br>
+
+</div>
 
     <h2>Variable</h2>
     <p><%= tagline %></p>
 
     <ul>
-      <% mascots.forEach(function(mascot) { %>
-        <li>
-          <strong><%= mascot.name %></strong>
-          representing <%= mascot.organization %>,
-          born <%= mascot.birth_year %>
-        </li>
-      <% }); %>
+      <div class="jumbotron">
+        <button>this is a button</button>
+    <% var test = 101; %>
+    </div>
     </ul>
   </div>
 </main>

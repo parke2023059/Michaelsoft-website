@@ -1,5 +1,14 @@
 var express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+
 var app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+app.use(express.static('./static'));
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -8,15 +17,16 @@ app.set('view engine', 'ejs');
 
 // index page
 app.get('/', function(req, res) {
-  var mascots = [
-    { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
-    { name: 'Tux', organization: "Linux", birth_year: 1996},
-    { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
+  let members = [
+    { name: 'Trey Floto', },
+    { name: 'Parker Fink'},
+    { name: 'Leniece Bennett'},
+    { name: 'Logan Hiller'}
   ];
-  var tagline = "No programming concept is complete without a cute animal mascot.";
+  var tagline = "No programming concept is complete without our members.";
 
   res.render('pages/index', {
-    mascots: mascots,
+    members: members,
     tagline: tagline
   });
 });
