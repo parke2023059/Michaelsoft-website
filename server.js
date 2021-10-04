@@ -40,5 +40,9 @@ app.get('/team', function(req, res) {
   res.render('pages/team');
 });
 
+app.get('/teamtest', function(req, res) {
+  res.render('pages/teamtest');
+});
+
 app.listen(8080);
 console.log('Server is listening on port 8080');
