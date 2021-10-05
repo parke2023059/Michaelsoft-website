@@ -17,18 +17,6 @@ app.set('view engine', 'ejs');
 
 // index page
 app.get('/', function(req, res) {
-  let members = [
-    { name: 'Trey Floto', },
-    { name: 'Parker Fink'},
-    { name: 'Leniece Bennett'},
-    { name: 'Logan Hiller'}
-  ];
-  var tagline = "No programming concept is complete without our members.";
-
-  res.render('pages/index', {
-    members: members,
-    tagline: tagline
-  });
 });
 
 // about page
@@ -36,12 +24,24 @@ app.get('/about', function(req, res) {
   res.render('pages/about');
 });
 
-app.get('/team', function(req, res) {
+app.get('/trey', function(req, res) {
+
   res.render('pages/team');
 });
 
-app.get('/teamtest', function(req, res) {
-  res.render('pages/teamtest');
+app.get('/parker', function(req, res) {
+
+  res.render('pages/team');
+});
+
+app.get('/leniece', function(req, res) {
+
+  res.render('pages/team');
+});
+
+app.get('/logan', function(req, res) {
+
+  res.render('pages/team');
 });
 
 app.listen(8080);
