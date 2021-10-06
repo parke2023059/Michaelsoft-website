@@ -13,7 +13,7 @@ app.use(express.static('./static'));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
+ //use res.render to load up an ejs view file
 
 // index page
 app.get('/', function(req, res) {
@@ -33,6 +33,5 @@ app.get('/team', function(req, res) {
 app.get('/trey', function(req, res) {
   res.render('pages/team', { name: 'Trey Floto'});
 });
-
 app.listen(8080);
 console.log('Server is listening on port 8080');
