@@ -17,6 +17,8 @@ app.set('view engine', 'ejs');
 
 // index page
 app.get('/', function(req, res) {
+  res.render('pages/index', {
+  });
 });
 
 // about page
@@ -24,24 +26,12 @@ app.get('/about', function(req, res) {
   res.render('pages/about');
 });
 
+app.get('/team', function(req, res) {
+  res.render('pages/team');
+});
+
 app.get('/trey', function(req, res) {
-
-  res.render('pages/team');
-});
-
-app.get('/parker', function(req, res) {
-
-  res.render('pages/team');
-});
-
-app.get('/leniece', function(req, res) {
-
-  res.render('pages/team');
-});
-
-app.get('/logan', function(req, res) {
-
-  res.render('pages/team');
+  res.render('pages/team', { name: 'Trey Floto'});
 });
 
 app.listen(8080);
