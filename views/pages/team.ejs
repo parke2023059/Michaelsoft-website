@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include('../partials/head') %>
+  <%- include('../partials/head'); %>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="container">
 
 <header>
-  <h2>Variable</h2>
-  <p><%= name =%></p>
+  <%- include('../partials/header'); %>
 </header>
 
 <main>
-
+  <div class="jumbotron">
+    <h2><%= name %></h2>
+    <p><%= line1 %></p>
+    <p><%= line2 %></p>
+    <p><%= line3 %></p>
 </body>
-</script>
-</main>
-
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
 
 </body>
 </html>
