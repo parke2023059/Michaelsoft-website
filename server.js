@@ -20,7 +20,7 @@ app.use(express.static('./static'));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
- //use res.render to load up an ejs view file
+// use res.render to load up an ejs view file
 
 // index page
 app.get('/', function(req, res) {
@@ -69,7 +69,6 @@ app.get('/logan', function(req, res) {
     line3: "2004(?)-September 2021"
   });
 });
-==
 
 //feedback callback function
 app.get('/feedback',function(req, res){
