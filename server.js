@@ -1,8 +1,15 @@
 var express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
+const url = require('url');
 
 var app = express();
+
+var rawdata = fs.readFileSync('Teamprofiles.json');
+var profiles = JSON.parse(rawdata);
+
+rawdata = fs.readFileSync('Comments.json');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -62,6 +69,28 @@ app.get('/logan', function(req, res) {
     line3: "2004(?)-September 2021"
   });
 });
+
+app.get('/feedback',function(req, res){
+  const feedback = url.parse(req.url,true).query;
+  console.log(feedback);
+  if (feedback.name && feedback.adjective){
+    res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`);
+    var rawdata = fs.readFileSync('comments.json')
+    var comment = JSON.parse(rawdata)
+    var feedbackobjects = {name: feedback.name, adjective: feedback.adjective}
+    comment['comments'].push(feedbackobjects)
+    var sendwords = JSON.stringify(comment)
+    fs.writeFile('comments.json', sendwords, 'utf8', function(){
+      console.log('file is written, epic');
+    })
+  }
+
+  if (feedback.adjective == null || feedback.adjective == undefined){
+      res.send("DO THE ADJECTIVE NOW");}
+  if (feedback.name == null || feedback.name == undefined)
+   { res.send("DO THE NAME");
+  }
+  });
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
