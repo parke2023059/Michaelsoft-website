@@ -11,13 +11,18 @@
 </header>
 
 <main>
-  <div class="jumbotron">
-    <h1>Michaelsoft is a professional orginization</h1>
-    <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
-    <p id="one"></p>
-    <button onclick="random()">Random</button>
+  <head>
+    <meta charset="utf-8">
+    <title>donos</title>
+  </head>
+  <body>
+    <h1>Gimme dem bitties</h1>
+    <form action="/donos" method="post">
+        <input type="text" name="bits" placeholder = "Bits go here." value="">
+        <input type="submit" value="Submit">
+    </form>
+  </body>
 </body>
-</div>
 
 
 <script>
@@ -26,11 +31,9 @@
 document.getElementById("one").innerHTML = Math.floor(Math.random() * 10);
 }
 </script>
-</main>
 
 <footer>
   <%- include('../partials/footer'); %>
 </footer>
 
-</body>
 </html>
