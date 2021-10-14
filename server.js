@@ -36,7 +36,7 @@ app.get('/about', function(req, res) {
 app.get('/trey', function(req, res) {
   res.render('pages/team', {
     name: "Trey Floto", //I don't know how, I don't know why, but adding new things here don't work without restarting the PC.
-    line1:"🎓Programming student, class of 2023",
+    line1:"🎓Programming student, class of 2023", //too bad!
     line2:"🔧Future software engineer.",
     line3:"Music and audio enthusiast. Technology & open-source enthusiast. Car enthusiast. Sci-fi enthusiast. Forward thinker. My specialties include managing people, and committing to work. In my career, make enough money to sustain me.",
   });
