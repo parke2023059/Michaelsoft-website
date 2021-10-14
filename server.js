@@ -70,6 +70,28 @@ app.get('/logan', function(req, res) {
   });
 });
 
+app.get('/feedback', function(req, res) {
+  res.render('pages/feedback', {
+  });
+});
+
+/*
+app.post('/donos', function(req, res) {
+  //validate body paramers.
+  if(req.body.bits) {
+    //get bits paramter from the request body
+    const bits= req.body.bits;
+    console.log(`you have sent ${bits} bits`);
+    res.send(`you have sent ${bits} bits`);
+  } else {
+    //if they didnt send a bits param, break their h*cking kneecaps
+  res.send('give me your money now');
+  console.log(`WHERES MY MONEY ANON?`)
+}
+})
+*./
+
+/*
 app.get('/feedback',function(req, res){
   const feedback = url.parse(req.url,true).query;
   console.log(feedback);
@@ -91,6 +113,7 @@ app.get('/feedback',function(req, res){
    { res.send("DO THE NAME");
   }
   });
+*/
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');

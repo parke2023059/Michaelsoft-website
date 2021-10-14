@@ -12,25 +12,21 @@
 
 <main>
   <head>
+      <div class="jumbotron">
     <meta charset="utf-8">
-    <title>donos</title>
+    <title>Feedback</title>
   </head>
   <body>
-    <h1>Gimme dem bitties</h1>
-    <form action="/donos" method="post">
-        <input type="text" name="bits" placeholder = "Bits go here." value="">
-        <input type="submit" value="Submit">
-    </form>
+    <h1>Feed me feedback</h1>
+    <form class="" action="feedback.ejs" method="post">
+        <input type="text" name="Your name" placeholder="Enter your name here.." value="">
+        <br>
+        <textarea id="Website Feedback" name="Feedback" placeholder="Enter your feedback here" rows="4" cols="50">
+         </textarea>
+        <input type="submit" value="submit">
+         </form>
   </body>
 </body>
-
-
-<script>
- function random(){
-
-document.getElementById("one").innerHTML = Math.floor(Math.random() * 10);
-}
-</script>
 
 <footer>
   <%- include('../partials/footer'); %>
