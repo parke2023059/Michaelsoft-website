@@ -1,9 +1,7 @@
 body {
   background-image: url("background.png");
   background-color: teal;
-
   background-attachment: fixed;
-
 }
 h1 {
   color: black;
