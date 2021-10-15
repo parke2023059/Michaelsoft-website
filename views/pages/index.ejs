@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
@@ -13,19 +14,34 @@
 <main>
   <div class="jumbotron">
     <h1>Michaelsoft is a professional orginization</h1>
-    <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+    <p>Welcome to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
     <p id="one"></p>
-    <button onclick="random()">Random</button>
+
 </body>
 </div>
 
 
-<script>
- function random(){
 
-document.getElementById("one").innerHTML = Math.floor(Math.random() * 10);
+
+
+<script>
+
+function changeBodyBg(image) {
+  document.body.style.background = image;
 }
+
+
 </script>
+
+<div>
+  <label>Change Webpage Background To:</label>
+  <button type="button" onClick=changeBodyBg('Red')>Change Background-Red</button>
+    <button type="button" onClick=changeBodyBg('Blue')>Change Background-Blue</button>
+      <button type="button" onClick=changeBodyBg('Skyblue')>Change Background-Skyblue</button>
+</div>
+
+
+
 </main>
 
 <footer>
