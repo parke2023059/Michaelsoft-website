@@ -11,7 +11,7 @@ var profiles = JSON.parse(rawdata);
 
 rawdata = fs.readFileSync('Comments.json');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(express.static('./static'));
@@ -114,6 +114,19 @@ app.get('/feedback',function(req, res){
   }
   });
 */
+app.post('/feedback', function(req,res) {
+  if (req.body.Name && req.body.Feedback) {
+
+  var feedbackobjects = {name: req.body.Name, adjective: req.body.Feedback}
+  var data = fs.readFileSync('comments.json')
+  var comment = JSON.parse(rawdata)
+  comment['comments'].push(feedbackobjects)
+  var sendwords = JSON.stringify(comment)
+  fs.writeFile('comments.json', sendwords, 'utf8', function()){
+    console.log('file is written, epic');
+  }
+  }
+}
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
