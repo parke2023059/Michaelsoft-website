@@ -89,9 +89,9 @@ app.post('/donos', function(req, res) {
   console.log(`WHERES MY MONEY ANON?`)
 }
 })
-*./
+*/ //this is from a lesson
 
-/*
+/* //this is totatlly not team C's work
 app.get('/feedback',function(req, res){
   const feedback = url.parse(req.url,true).query;
   console.log(feedback);
