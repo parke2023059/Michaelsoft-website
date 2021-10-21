@@ -70,31 +70,55 @@ app.get('/logan', function(req, res) {
   });
 });
 
+
 app.get('/feedback', function(req, res) {
   res.render('pages/feedback', {
   });
 });
 
-/*
-app.post('/donos', function(req, res) {
-  //validate body paramers.
-  if(req.body.bits) {
-    //get bits paramter from the request body
-    const bits= req.body.bits;
-    console.log(`you have sent ${bits} bits`);
-    res.send(`you have sent ${bits} bits`);
-  } else {
-    //if they didnt send a bits param, break their h*cking kneecaps
-  res.send('give me your money now');
-  console.log(`WHERES MY MONEY ANON?`)
-}
-})
-*/ //this is from a lesson
+//var namesAndComments = []
+//namesAndComments.push('name', 'comment');
+//console.log(namesAndComments);
 
-/* //this is totatlly not team C's work
+app.post('/feedback', function(req, res) {
+  var name = req.body.name //the boxes in feedback.ejs
+  var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
+  var feedbackobjects = {name: name, comment: comment}; //this and the previous 2 variables are required for the if statement. Don't remove.
+  //this is team c's work
+  var rawcomments = fs.readFileSync('comments.json') //reading json file
+  var comment = JSON.parse(rawcomments)// using json raw data to data
+
+  if (feedbackobjects.name && feedbackobjects.comment) {
+    console.log('Name and Comment have been inputted');
+
+    comment['comments'].push(feedbackobjects) // put it in the array //
+
+  } else if (feedbackobjects.comment) {
+    console.log('John Doe has attempted to submit a comment (no name)')
+  } else if (feedbackobjects.name) { //if name but no comment, probably
+    console.log('no comment')
+    res.render('pages/feedback')
+  } else {
+    console.log('no name or comment.')
+  }
+});
+
+
+/*
+        _       _                                                      _       _             _       _
+      | |     (_)                                                    | |     (_)           | |     (_)
+   __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___     __| | ___  _ _ __     __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___
+ / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \   / _` |/ _ \| | '_ \   / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \
+| (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | | | (_| | (_) | | | | | | (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | |
+\__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|  \__,_|\___/|_|_| |_|  \__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|
+*/
+
+/*
 app.get('/feedback',function(req, res){
+  res.render('pages/feedback',{
   const feedback = url.parse(req.url,true).query;
   console.log(feedback);
+
   if (feedback.name && feedback.adjective){
     res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`);
     var rawdata = fs.readFileSync('comments.json')
@@ -105,7 +129,7 @@ app.get('/feedback',function(req, res){
     fs.writeFile('comments.json', sendwords, 'utf8', function(){
       console.log('file is written, epic');
     })
-  }
+  }}
 
   if (feedback.adjective == null || feedback.adjective == undefined){
       res.send("DO THE ADJECTIVE NOW");}
@@ -113,20 +137,16 @@ app.get('/feedback',function(req, res){
    { res.send("DO THE NAME");
   }
   });
+
+/*
+__          ___             _       _   _     _           _ _  __  __ _            _ _
+\ \        / / |           (_)     | | | |   (_)         | (_)/ _|/ _(_)          | | |
+ \ \  /\  / /| |__  _   _   _ ___  | |_| |__  _ ___    __| |_| |_| |_ _  ___ _   _| | |_
+  \ \/  \/ / | '_ \| | | | | / __| | __| '_ \| / __|  / _` | |  _|  _| |/ __| | | | | __|
+   \  /\  /  | | | | |_| | | \__ \ | |_| | | | \__ \ | (_| | | | | | | | (__| |_| | | |_
+    \/  \/   |_| |_|\__, | |_|___/  \__|_| |_|_|___/  \__,_|_|_| |_| |_|\___|\__,_|_|\__|
+                     __/ |
+                    |___/
 */
-app.post('/feedback', function(req,res) {
-  if (req.body.Name && req.body.Feedback) {
-
-  var feedbackobjects = {name: req.body.Name, adjective: req.body.Feedback}
-  var data = fs.readFileSync('comments.json')
-  var comment = JSON.parse(rawdata)
-  comment['comments'].push(feedbackobjects)
-  var sendwords = JSON.stringify(comment)
-  fs.writeFile('comments.json', sendwords, 'utf8', function()){
-    console.log('file is written, epic');
-  }
-  }
-}
-
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
