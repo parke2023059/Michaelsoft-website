@@ -5,12 +5,13 @@ const fs = require('fs');
 const url = require('url');
 
 var app = express();
+
 var rawdata = fs.readFileSync('Teamprofiles.json');
 var profiles = JSON.parse(rawdata);
 
 rawdata = fs.readFileSync('Comments.json');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(express.static('./static'));
@@ -44,7 +45,7 @@ app.get('/trey', function(req, res) {
 app.get('/parker', function(req, res) {
   res.render('pages/team', {
     name: "Parker Fink",//epic :mortar_board:
-    line1: "🎓Programming Student at YorkTech",
+    line1: ":mortar_board:Programming Student at YorkTech",
     line2: "I know a little bit of python, and am currently learning javascript.I am open to learning new programming languages.",
     line3: "", //you'll notice that these values are the bios themselves. This is because the team.ejs file takes these for the pages
   });
@@ -69,27 +70,41 @@ app.get('/logan', function(req, res) {
   });
 });
 
-app.get('/feedback',function(req, res){
-  const feedback = url.parse(req.url,true).query;
-  console.log(feedback);
-  if (feedback.name && feedback.adjective){
-    res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`);
-    var rawdata = fs.readFileSync('comments.json')
-    var comment = JSON.parse(rawdata)
-    var feedbackobjects = {name: feedback.name, adjective: feedback.adjective}
-    comment['comments'].push(feedbackobjects)
-    var sendwords = JSON.stringify(comment)
-    fs.writeFile('comments.json', sendwords, 'utf8', function(){
-      console.log('file is written, epic');
-    })
-  }
 
-  if (feedback.adjective == null || feedback.adjective == undefined){
-      res.send("DO THE ADJECTIVE NOW");}
-  if (feedback.name == null || feedback.name == undefined)
-   { res.send("DO THE NAME");
-  }
+app.get('/feedback', function(req, res) {
+  //open and read the comments file, save to variable
+  //convert the raw data to JSON with JSON.parse(), save to variable
+  res.render('pages/feedback', {errorMessage: ''
+    //comments: commentfile variable's comment array
   });
+});
+
+app.post('/feedback', function(req, res) {
+
+  var name = req.body.name //the boxes in feedback.ejs
+  var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
+  var feedbackobjects = {name: name, comment: comment}
+  if (feedbackobjects.name && feedbackobjects.comment) {
+    var rawdata = fs.readFileSync('comments.json')
+    //open and read the comments file, save to variable
+    var comment = JSON.parse(rawdata)
+    //convert the raw data to JSON with JSON.parse(), save to variable
+    comment['comments'].push(feedbackobjects)
+    //push feedbackobjects to commentfiles's comment array
+    var sendwords = JSON.stringify(comment)
+    //stringify the commentsfile variable
+    fs.writeFile('comments.json', sendwords, 'utf8', function(){//writes the list to comments.json
+      console.log('file is written, epic');//lets fucking gooooooooo
+    })
+    //write commentsfile variable to the file again
+    res.redirect('/feedback')
+    //render feedback template with success message or res.redirect() to /feedback
+  } else {
+    console.log('missing data')
+    //res.redirect('/error', {errorMessage: "Missing data: fill out both text boxes.",}); //WHY WONT YOU WORK
+    res.send('missing data you gosh darn idiot!')
+  }
+});
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
