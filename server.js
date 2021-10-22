@@ -71,14 +71,14 @@ app.get('/logan', function(req, res) {
 });
 
 
-app.get('/feedback', function(req, res) {
-  //open and read the comments file, save to variable
-  //convert the raw data to JSON with JSON.parse(), save to variable
-  res.render('pages/feedback', {
-    //comments: commentfile variable's comment array
-  });
+app.get('/feedback',function (req, res) {
+  rawdata = fs.readFileSync('comments.json');
+  let commentfile = JSON.parse(rawdata);
+  console.log(commentfile.comments);
+  res.render('pages/feedback.ejs', {
+    comments: commentfile.comments
+  })
 });
-
 app.post('/feedback', function(req, res) {
   var name = req.body.name //the boxes in feedback.ejs
   var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
@@ -99,7 +99,7 @@ app.post('/feedback', function(req, res) {
     res.redirect('/feedback')
     //render feedback template with success message or res.redirect() to /feedback
   } else {
-    console.log('missing data')
+    res.send('missing data')
     //render feedback with error message
   }
 });
