@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <h1>Michaelsoft is a professional orginization</h1>
+    <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+    <p id="one"></p>
+    <button onclick="random()">Random</button>
+</body>
+</div>
+
+
+<script>
+ function random(){
+
+document.getElementById("one").innerHTML = Math.floor(Math.random() * 10);
+}
+</script>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

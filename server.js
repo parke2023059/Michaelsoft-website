@@ -78,8 +78,9 @@ app.get('/feedback',function (req, res) {
   res.render('pages/feedback.ejs', {
     comments: commentfile.comments
   })
-});
+
 app.post('/feedback', function(req, res) {
+
   var name = req.body.name //the boxes in feedback.ejs
   var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
   var feedbackobjects = {name: name, comment: comment}
@@ -102,7 +103,6 @@ app.post('/feedback', function(req, res) {
     res.send('missing data')
     //render feedback with error message
   }
-});
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
