@@ -96,40 +96,13 @@ app.post('/feedback', function(req, res) {
       console.log('file is written, epic');//lets fucking gooooooooo
     })
     //write commentsfile variable to the file again
+    res.redirect('/feedback')
     //render feedback template with success message or res.redirect() to /feedback
   } else {
     console.log('missing data')
     //render feedback with error message
   }
 });
-
-
-
-
-
-
-
-app.get('/feedback',function(req, res){
-  const feedback = url.parse(req.url,true).query; //jsonifies the data from the url
-  console.log(feedback); //logs the above
-
-  if (feedback.name && feedback.adjective){ //where is name and adjective defined? I don't know. Maybe its assumed because its just whats in the url.
-    res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`); //sends the info to the website
-    var rawdata = fs.readFileSync('comments.json') //?????
-    var comment = JSON.parse(rawdata)// ??? ?? ??
-    var feedbackobjects = {name: feedback.name, adjective: feedback.adjective}//defines feedbackobjects as the name and adjective
-    comment['comments'].push(feedbackobjects)//adds more comments to the list of comments that goes in comments.json
-    var sendwords = JSON.stringify(comment) //converts the list to a json string
-    fs.writeFile('comments.json', sendwords, 'utf8', function(){//writes the list to comments.json
-      console.log('file is written, epic');//lets fucking gooooooooo
-    })
-  }})
-
-
-
-
-
-
 
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
