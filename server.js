@@ -72,72 +72,54 @@ app.get('/logan', function(req, res) {
 
 
 app.get('/feedback', function(req, res) {
+  //open and read the comments file, save to variable
+  //convert the raw data to JSON with JSON.parse(), save to variable
   res.render('pages/feedback', {
+    //comments: commentfile variable's comment array
   });
 });
-
-//var namesAndComments = []
-//namesAndComments.push('name', 'comment');
-//console.log(namesAndComments);
 
 app.post('/feedback', function(req, res) {
   var name = req.body.name //the boxes in feedback.ejs
   var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
-  var feedbackobjects = {name: name, comment: comment}; //this and the previous 2 variables are required for the if statement. Don't remove.
-  //this is team c's work
-  var rawcomments = fs.readFileSync('comments.json') //reading json file
-  var comment = JSON.parse(rawcomments)// using json raw data to data
-
+  var feedbackobjects = {name: name, comment: comment}
   if (feedbackobjects.name && feedbackobjects.comment) {
-    console.log('Name and Comment have been inputted');
-
-    comment['comments'].push(feedbackobjects) // put it in the array //
-
-  } else if (feedbackobjects.comment) {
-    console.log('John Doe has attempted to submit a comment (no name)')
-  } else if (feedbackobjects.name) { //if name but no comment, probably
-    console.log('no comment')
-    res.render('pages/feedback')
+    //open and read the comments file, save to variable
+    //convert the raw data to JSON with JSON.parse(), save to variable
+    //push feedbackobjects to commentfiles's comment array
+    //stringify the commentsfile variable
+    //write commentsfile variable to the file again
+    //render feedback template with success message or res.redirect() to /feedback
   } else {
     console.log('no name or comment.')
+    //render feedback with error message
   }
 });
-
-
 /*
-        _       _                                                      _       _             _       _
-      | |     (_)                                                    | |     (_)           | |     (_)
-   __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___     __| | ___  _ _ __     __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___
- / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \   / _` |/ _ \| | '_ \   / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \
-| (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | | | (_| | (_) | | | | | | (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | |
-\__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|  \__,_|\___/|_|_| |_|  \__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|
+         _       _                                                      _       _             _       _
+       | |     (_)                                                    | |     (_)           | |     (_)
+    __| | ___ _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___     __| | ___  _ _ __     __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___
+  / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \   / _` |/ _ \| | '_ \   / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \
+ | (_| | (_)| | | | | | |_| | |    | | | | | | (_) | | | | | | | (_| | (_) | | | | | | (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | |
+ \_,__|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|  \__,_|\___/|_|_| |_|  \__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|
 */
 
 /*
 app.get('/feedback',function(req, res){
-  res.render('pages/feedback',{
-  const feedback = url.parse(req.url,true).query;
-  console.log(feedback);
+  const feedback = url.parse(req.url,true).query; //jsonifies the data from the url
+  console.log(feedback); //logs the above
 
-  if (feedback.name && feedback.adjective){
-    res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`);
-    var rawdata = fs.readFileSync('comments.json')
-    var comment = JSON.parse(rawdata)
-    var feedbackobjects = {name: feedback.name, adjective: feedback.adjective}
-    comment['comments'].push(feedbackobjects)
-    var sendwords = JSON.stringify(comment)
-    fs.writeFile('comments.json', sendwords, 'utf8', function(){
-      console.log('file is written, epic');
+  if (feedback.name && feedback.adjective){ //where is name and adjective defined? I don't know. Maybe its assumed because its just whats in the url.
+    res.send(`howdy, ${feedback.name} your overlords have noticed that you're doing ${feedback.adjective}. Care to elaborate?`); //sends the info to the website
+    var rawdata = fs.readFileSync('comments.json') //?????
+    var comment = JSON.parse(rawdata)// ??? ?? ??
+    var feedbackobjects = {name: feedback.name, adjective: feedback.adjective}//defines feedbackobjects as the name and adjective
+    comment['comments'].push(feedbackobjects)//adds more comments to the list of comments that goes in comments.json
+    var sendwords = JSON.stringify(comment) //converts the list to a json string
+    fs.writeFile('comments.json', sendwords, 'utf8', function(){//writes the list to comments.json
+      console.log('file is written, epic');//lets fucking gooooooooo
     })
-  }}
-
-  if (feedback.adjective == null || feedback.adjective == undefined){
-      res.send("DO THE ADJECTIVE NOW");}
-  if (feedback.name == null || feedback.name == undefined)
-   { res.send("DO THE NAME");
-  }
-  });
-
+  }})
 /*
 __          ___             _       _   _     _           _ _  __  __ _            _ _
 \ \        / / |           (_)     | | | |   (_)         | (_)/ _|/ _(_)          | | |
