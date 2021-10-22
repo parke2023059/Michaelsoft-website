@@ -94,15 +94,15 @@ app.post('/feedback', function(req, res) {
     var sendwords = JSON.stringify(comment)
     //stringify the commentsfile variable
     fs.writeFile('comments.json', sendwords, 'utf8', function(){//writes the list to comments.json
-      console.log('file is written, epic');//lets fucking gooooooooo
+      console.log('File has been written');//lets fucking gooooooooo
     })
     //write commentsfile variable to the file again
     res.redirect('/feedback')
     //render feedback template with success message or res.redirect() to /feedback
   } else {
-    console.log('missing data')
+    console.log('Missing Data')
     //res.redirect('/error', {errorMessage: "Missing data: fill out both text boxes.",}); //WHY WONT YOU WORK
-    res.send('missing data you gosh darn idiot!')
+    res.send('Missing Data: Fill out both boxes')
   }
 });
 
