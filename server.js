@@ -84,27 +84,31 @@ app.post('/feedback', function(req, res) {
   var comment = req.body.comment //this: <input type="text" name="Name" placeholder="Enter your name here.." value="">
   var feedbackobjects = {name: name, comment: comment}
   if (feedbackobjects.name && feedbackobjects.comment) {
+    var rawdata = fs.readFileSync('comments.json')
     //open and read the comments file, save to variable
+    var comment = JSON.parse(rawdata)
     //convert the raw data to JSON with JSON.parse(), save to variable
+    comment['comments'].push(feedbackobjects)
     //push feedbackobjects to commentfiles's comment array
+    var sendwords = JSON.stringify(comment)
     //stringify the commentsfile variable
+    fs.writeFile('comments.json', sendwords, 'utf8', function(){//writes the list to comments.json
+      console.log('file is written, epic');//lets fucking gooooooooo
+    })
     //write commentsfile variable to the file again
     //render feedback template with success message or res.redirect() to /feedback
   } else {
-    console.log('no name or comment.')
+    console.log('missing data')
     //render feedback with error message
   }
 });
-/*
-         _       _                                                      _       _             _       _
-       | |     (_)                                                    | |     (_)           | |     (_)
-    __| | ___ _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___     __| | ___  _ _ __     __| | ___  _ _ __    _   _ _ __   _ __ ___   ___  _ __ ___
-  / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \   / _` |/ _ \| | '_ \   / _` |/ _ \| | '_ \  | | | | '__| | '_ ` _ \ / _ \| '_ ` _ \
- | (_| | (_)| | | | | | |_| | |    | | | | | | (_) | | | | | | | (_| | (_) | | | | | | (_| | (_) | | | | | | |_| | |    | | | | | | (_) | | | | | |
- \_,__|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|  \__,_|\___/|_|_| |_|  \__,_|\___/|_|_| |_|  \__,_|_|    |_| |_| |_|\___/|_| |_| |_|
-*/
 
-/*
+
+
+
+
+
+
 app.get('/feedback',function(req, res){
   const feedback = url.parse(req.url,true).query; //jsonifies the data from the url
   console.log(feedback); //logs the above
@@ -120,15 +124,12 @@ app.get('/feedback',function(req, res){
       console.log('file is written, epic');//lets fucking gooooooooo
     })
   }})
-/*
-__          ___             _       _   _     _           _ _  __  __ _            _ _
-\ \        / / |           (_)     | | | |   (_)         | (_)/ _|/ _(_)          | | |
- \ \  /\  / /| |__  _   _   _ ___  | |_| |__  _ ___    __| |_| |_| |_ _  ___ _   _| | |_
-  \ \/  \/ / | '_ \| | | | | / __| | __| '_ \| / __|  / _` | |  _|  _| |/ __| | | | | __|
-   \  /\  /  | | | | |_| | | \__ \ | |_| | | | \__ \ | (_| | | | | | | | (__| |_| | | |_
-    \/  \/   |_| |_|\__, | |_|___/  \__|_| |_|_|___/  \__,_|_|_| |_| |_|\___|\__,_|_|\__|
-                     __/ |
-                    |___/
-*/
+
+
+
+
+
+
+
 app.listen(8080);//now listen closely heres a story about how my life got flip-turned upside down, and Id like to take a minute just sit right there imma tell you how I became the fresh prince of a town called bel-air.
 console.log('Server is listening on port 8080');
