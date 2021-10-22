@@ -24,7 +24,14 @@
         <textarea id="comment" name="comment" rows="4" cols="50" placeholder="gib comment"></textarea>
         <input type="submit" value="submit">
          </form>
-  </body>
+         <table>
+         <% for(var i=0; i < comments.length; i++) { %>
+            <tr>
+              <td><%= comments[i].name %></td>
+              <td><%= comments[i].comment %></td>
+            </tr>
+         <% } %>
+         </table>
 </body>
 <footer>
   <%- include('../partials/footer'); %>
