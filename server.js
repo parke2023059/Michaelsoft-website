@@ -100,7 +100,9 @@ app.post('/feedback', function(req, res) {
     //render feedback template with success message or res.redirect() to /feedback
   } else {
     console.log('missing data')
-    //render feedback with error message
+    res.redirect('/feedback', function(req, res){
+    errorMessage: 'Missing data, fill out both boxes.'
+  })
   }
 });
 
