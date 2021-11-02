@@ -6,10 +6,10 @@ const url = require('url');
 
 var app = express();
 
-var rawdata = fs.readFileSync('Teamprofiles.json');
+var rawdata = fs.readFileSync('teamprofiles.json');
 var profiles = JSON.parse(rawdata);
 
-rawdata = fs.readFileSync('Comments.json');
+rawdata = fs.readFileSync('comments.json');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
