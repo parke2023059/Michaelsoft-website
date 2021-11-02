@@ -45,7 +45,7 @@ app.get('/trey', function(req, res) {
 app.get('/parker', function(req, res) {
   res.render('pages/team', {
     name: "Parker Fink",//epic :mortar_board:
-    line1: ":mortar_board:Programming Student at YorkTech",
+    line1: "🎓Programming Student at YorkTech",
     line2: "I know a little bit of python, and am currently learning javascript.I am open to learning new programming languages.",
     line3: "", //you'll notice that these values are the bios themselves. This is because the team.ejs file takes these for the pages
   });

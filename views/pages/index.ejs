@@ -1,49 +1,29 @@
-
-
+<!DOCTYPE html>
 <html lang="en">
+<body onload="startTime()">
 <head>
   <%- include('../partials/head'); %>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="container">
-
 <header>
   <%- include('../partials/header'); %>
 </header>
-
 <main>
   <div class="jumbotron">
     <h1>Michaelsoft is a professional orginization</h1>
-    <p>Welcome to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
+    <p>Welcomne to Michaelsoft! Every day we strive to create more product and put more of our product in your hands!</p>
     <p id="one"></p>
-
+    <button onclick="random()">Random</button>
+    <h4 id="txt"></h4>
 </body>
 </div>
-
-
-
-
-
 <script>
-
-function changeBodyBg(image) {
-  document.body.style.background = image;
+ function random(){
+document.getElementById("one").innerHTML = Math.floor(Math.random() * 1000);
 }
-
-
 </script>
-
-<div>
-  <label>Change Webpage Background To:</label>
-  <button type="button" onClick=changeBodyBg('Red')>Change Background-Red</button>
-    <button type="button" onClick=changeBodyBg('Blue')>Change Background-Blue</button>
-      <button type="button" onClick=changeBodyBg('Skyblue')>Change Background-Skyblue</button>
-</div>
-
-
-
-</main>
-
+<script>
 function startTime() {
   const today = new Date();
   let h = today.getHours();
@@ -54,16 +34,14 @@ function startTime() {
   document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
   setTimeout(startTime, 1000);
 }
-
 function checkTime(i) {
   if (i < 10) {i = "0" + i};
   return i;
 }
-
-
+</script>
+</main>
 <footer>
   <%- include('../partials/footer'); %>
 </footer>
-
 </body>
 </html>
