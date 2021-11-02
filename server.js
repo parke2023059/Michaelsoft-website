@@ -60,7 +60,16 @@ app.get('/leniece', function(req, res) {
   });
 });
 
+app.get('/tyler', function(req, res) {
+  res.render('pages/team', {
+    name: "Tyler Siegmund",//maybe update this in the future, but not until Logan actually gets caught up.
+    line1: "My name is Tyler Siegmund. I am interested in the concept of Python. I play too many video games to count and probably know too much about them. I'm not a very social person, but I do talk if needed. My dream is to make a game of my own. A little retro RPG game. The concept for this game is pretty weird, as it's more on little nods about me. A lot of easter egg ideas. I plan to do most of this with one other person. I know it'll be a hard project, but I think I'll manage. For my specialties, I'm pretty good at Python. It's something I've spent a lot of time on. Another thing I consider a specialty of mine is my writing skills. A lot of free time is spent writing little stories.",
+    line2: "",
+    line3: ""
+  });
+});
 
+/*
 app.get('/logan', function(req, res) {
   res.render('pages/team', {
     name: "Logan Hiller",//maybe update this in the future, but not until Logan actually gets caught up.
@@ -69,7 +78,7 @@ app.get('/logan', function(req, res) {
     line3: "2004(?)-September 2021"
   });
 });
-
+*/
 
 app.get('/feedback',function (req, res) {
   rawdata = fs.readFileSync('comments.json');
